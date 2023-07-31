@@ -71,34 +71,6 @@ const EditProfile = (props: Props) => {
     }
   }, [success]);
 
-  useEffect(() => {
-    requestLocationPermission();
-  }, []);
-
-  const requestLocationPermission = async () => {
-    try {
-      const granted = await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-        {
-          title: 'BOOKIFY App Location Permission',
-          message:
-            'BOOKIGY App needs access to your location ' +
-            'so we can show books to near by users.',
-          buttonNeutral: 'Ask Me Later',
-          buttonNegative: 'Cancel',
-          buttonPositive: 'OK',
-        },
-      );
-      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        setLoactionPermission(true);
-      } else {
-        console.log('Location permission denied');
-      }
-    } catch (err) {
-      console.warn(err);
-    }
-  };
-
   const userInfo = {
     email: profile.data.email,
     name: profile.data.name,
@@ -189,7 +161,7 @@ const EditProfile = (props: Props) => {
         <View style={styles.register}>
           <Avatar.Image
             size={80}
-            source={image ? { uri: image } :(profile.data.avatar ? {uri: profile.data.avatar.url} : require('../assets/avatar.png'))}
+            source={image ? { uri: image } :(profile.data.avatar.url ? {uri: profile.data.avatar.url} : require('../assets/avatar.png'))}
             style={{backgroundColor: '#fff'}}
           />
             <TouchableOpacity onPress={() => {setSheet(true)}}>

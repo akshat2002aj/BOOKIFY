@@ -44,7 +44,7 @@ const Profile = (props: Props) => {
         {/* <Header navigation={props.navigation}/> */}
         <View style={styles.userInfoSection}>
           <View style={{flexDirection: 'row', marginTop: 15}}>
-            <Avatar.Image source={profile.data.avatar ? {uri: profile.data.avatar.url} : require('../assets/avatar.png')} size={80} style={{backgroundColor:'#fff'}}/>
+            <Avatar.Image source={profile.data.avatar.url ? {uri: profile.data.avatar.url} : require('../assets/avatar.png')} size={80} style={{backgroundColor:'#fff'}}/>
             <View style={{marginLeft: 20}}>
               <Title
                 style={[

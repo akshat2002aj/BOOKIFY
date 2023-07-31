@@ -24,6 +24,9 @@ const BottomSheet = (props: Props) => {
 
   React.useEffect(()=>{
     requestCameraPermission();
+  },[])
+
+  React.useEffect(()=>{
     requestFilePermission();
   },[])
 
