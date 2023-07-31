@@ -10,6 +10,7 @@ import {
   DrawerContentScrollView,
   DrawerItemList,
 } from '@react-navigation/drawer';
+import {ActivityIndicator } from 'react-native-paper'
 
 import {useLogoutMutation} from '../features/AuthApiSlice';
 import {logOut} from '../features/Auth'
@@ -95,8 +96,16 @@ const CustomDrawer = (props: any) => {
                 marginLeft: 5,
                 color: '#000',
               }}>
-              Sign Out
+              Sign Out 
             </Text>
+            {
+              isLoading && <ActivityIndicator
+              animating={true}
+              size={25}
+              color="#AD40AF"
+              style={{marginLeft: 20}}
+            />
+            }
           </View>
         </TouchableOpacity>
       </View>
