@@ -5,8 +5,8 @@ type Props = {}
 
 const Checkout = (props: Props) => {
   return (
-    <View>
-      <Text>Checkout</Text>
+    <View style={{flex:1, alignItems:'center', justifyContent:'center'}}>
+      <Text style={{color:'#000', fontSize:24}}>Coming Soon...</Text>
     </View>
   )
 }

@@ -12,14 +12,13 @@ export const bookApiSlice = apiSlice.injectEndpoints({
           'Content-Type': 'multipart/form-data',
         },
       }),
-      invalidatesTags: ['Book'],
+      invalidatesTags: ['Book']
     }),
     getBooksWithInRadius: builder.query({
       query: () => ({
         url: `/api/v1/book/radius/5`,
         method: 'GET',
       }),
-      providesTags: ['Book'],
       keepUnusedDataFor: 5,
     }),
     getBookById: builder.query({

@@ -14,7 +14,8 @@ type Props = {
 
 const MyBooks = (props: Props) => {
   const arg = 1;
-  const {data: books, isLoading, isSuccess} = useGetMyBooksQuery(arg);
+  const {data: books, isLoading, isSuccess,refetch} = useGetMyBooksQuery(arg);
+
   return (
     <ListViewScreen title={"My Books"} isLoading={isLoading} isSuccess={isSuccess} books={books} navigation={props.navigation} icon={          <MaterialIcons
       name="add-circle-outline"
