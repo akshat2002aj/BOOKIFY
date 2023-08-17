@@ -9,7 +9,10 @@ import {useDispatch, useSelector} from 'react-redux';
 import {logIn} from './features/Auth'
 import Loader from './component/Loader';
 
-type Props = {};
+type Props = {
+  navigation:any;
+  route:any;
+};
 
 const Router = (props: Props) => {
   const dispatch  = useDispatch();
@@ -29,12 +32,6 @@ const Router = (props: Props) => {
       dispatch(logIn());
     }
   },[isSuccess])
-
-  useEffect(()=>{
-    if(isLogedin){
-      refetch();
-    }
-  },[isLogedin])
 
   return (
     <NavigationContainer>

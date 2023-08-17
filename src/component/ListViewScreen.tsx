@@ -28,9 +28,10 @@ import {
   
     useEffect(() => {
       if (props.isSuccess) {
+        console.log(1)
         setBookData(props.books);
       }
-    }, [props.isSuccess]);
+    }, [props.isSuccess, props.books]);
   
     return (
       <SafeAreaView style={{flex: 1, backgroundColor: '#fff', padding: 20}}>
