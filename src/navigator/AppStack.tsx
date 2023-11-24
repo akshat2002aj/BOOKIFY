@@ -16,6 +16,8 @@ import BookDetail from '../screen/BookDetail';
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import EditProfile from '../screen/EditProfile';
 import AddBook from '../screen/AddBook';
+import Checkout from '../screen/Checkout';
+import Summary from '../screen/Summary';
 
 const Stack = createNativeStackNavigator<any>();
 
@@ -109,6 +111,21 @@ const HomeStack = () => {
       <Stack.Screen
         name="EditProfile"
         component={EditProfile}
+      />
+      <Stack.Screen
+        name="Checkout"
+        component={Checkout}
+        options={({route}) => ({
+          id: route.params?.id,
+          payment: route.params?.payment
+        })}
+      />
+      <Stack.Screen
+        name="Summary"
+        component={Summary}
+        options={({route}) => ({
+          id: route.params?.id
+        })}
       />
     </Stack.Navigator>
   );

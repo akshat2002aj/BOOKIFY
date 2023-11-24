@@ -1,6 +1,7 @@
 import {StyleSheet, Text, View, ScrollView, SafeAreaView} from 'react-native';
 import React from 'react';
 import Header from '../component/Header';
+import { DataTable } from 'react-native-paper'
 
 type Props = {
   navigation:any;

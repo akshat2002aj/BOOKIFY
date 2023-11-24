@@ -118,25 +118,25 @@ const Profile = (props: Props) => {
               <Text style={styles.menuItemText}>My Books</Text>
             </View>
           </TouchableRipple>
-          <TouchableRipple onPress={() => {}}>
+          <TouchableRipple onPress={() => {props.navigation.navigate("Payments")}}>
             <View style={styles.menuItem}>
               <Icon name="credit-card" color="#AD40AF" size={25} />
               <Text style={styles.menuItemText}>Payments</Text>
             </View>
           </TouchableRipple>
-          <TouchableRipple onPress={() => {}}>
+          <TouchableRipple onPress={() => {props.navigation.navigate("Support")}}>
             <View style={styles.menuItem}>
               <Icon name="message" color="#AD40AF" size={25} />
               <Text style={styles.menuItemText}>Support</Text>
             </View>
           </TouchableRipple>
-          <TouchableRipple onPress={() => {}}>
+          <TouchableRipple onPress={() => {props.navigation.navigate("Payments")}}>
             <View style={styles.menuItem}>
               <Icon name="share" color="#AD40AF" size={25} />
               <Text style={styles.menuItemText}>Tell Your Friends</Text>
             </View>
           </TouchableRipple>
-          <TouchableRipple onPress={() => {}}>
+          <TouchableRipple onPress={() => {props.navigation.navigate("Settings")}}>
             <View style={styles.menuItem}>
               <Feather name="settings" color="#AD40AF" size={25} />
               <Text style={styles.menuItemText}>Settings</Text>

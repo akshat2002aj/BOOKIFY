@@ -35,7 +35,8 @@ const Router = (props: Props) => {
 
   return (
     <NavigationContainer>
-      {isLoading ?  <Loader/> : (isLogedin  ? <AppStack /> : <AuthStack />)}
+      {/* {isLoading ?  <Loader/> : (isLogedin  ? <AppStack /> : <AuthStack />)} */}
+      {(isLogedin  ? <AppStack /> : <AuthStack />)}
     </NavigationContainer>
   );
 };

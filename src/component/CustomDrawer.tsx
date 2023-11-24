@@ -44,7 +44,7 @@ const CustomDrawer = (props: any) => {
           source={require('../assets/menu-bg.jpeg')}
           style={{padding: 20}}>
           <Image
-            source={profile.data.avatar.url ? {uri: profile.data.avatar.url} : require('../assets/avatar.png')}
+            source={profile?.data?.avatar.url ? {uri: profile.data?.avatar.url} : require('../assets/avatar.png')}
             style={{height: 80, width: 80, borderRadius: 40, marginBottom: 10}}
           />
           <Text
@@ -54,7 +54,7 @@ const CustomDrawer = (props: any) => {
               fontFamily: 'Roboto-Medium',
               marginBottom: 5,
             }}>
-            {profile.data.name}
+            {profile?.data?.name}
           </Text>
           <View style={{flexDirection: 'row'}}>
             <Text

@@ -14,6 +14,17 @@ export const bookApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ['Book']
     }),
+    deleteBook: builder.mutation({
+      query: (bookId) => ({
+        url: `/api/v1/book/${bookId}`,
+        method: 'DELETE',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      }),
+      invalidatesTags: ['Book', 'User']
+    }),
     getBooksWithInRadius: builder.query({
       query: () => ({
         url: `/api/v1/book/radius/5`,
@@ -45,4 +56,5 @@ export const {
   useGetBookByIdQuery,
   useGetMyBooksQuery,
   useGetBooksWithInRadiusQuery,
+  useDeleteBookMutation
 } = bookApiSlice;

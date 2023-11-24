@@ -9,13 +9,12 @@ import {
 import React from 'react';
 
 import Header from '../component/Header';
-
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Feather from 'react-native-vector-icons/Feather';
 import EvilIcon from 'react-native-vector-icons/EvilIcons';
 import {Avatar, Button} from 'react-native-paper';
 
-import {useGetBookByIdQuery} from '../features/BookSlice';
+import {useGetBookByIdQuery, useDeleteBookMutation} from '../features/BookSlice';
 import {useProfileQuery} from '../features/AuthApiSlice';
 
 import {
@@ -26,6 +25,7 @@ import {
   ActivityIndicator,
 } from 'react-native-paper';
 import Router from '../Router';
+import { useCreateTransactionMutation } from '../features/TransactionApiSlice';
 
 type Props = {
   navigation: any;
@@ -48,18 +48,42 @@ const BookDetail = (props: Props) => {
   const arg = 1;
   const {data, isLoading, isSuccess} = useGetBookByIdQuery(bookId);
   const {data: profile} = useProfileQuery(arg);
+  const [deleteBook, {data:delBook, isLoading:loading, isSuccess:success}] = useDeleteBookMutation();
+  const [createTransaction, {data:order, isLoading:orderLoading, isSuccess:orderSuccess}] = useCreateTransactionMutation();
 
   React.useEffect(() => {
     if (isSuccess) {
       setBook(data.data);
-      if (data.data.user === profile.data._id) {
+      if (data?.data?.user === profile.data._id) {
         setEditable(true);
       }
     }
   }, [isSuccess]);
 
-  const handleSubmit = () => {};
-  const handleDelete = () => {};
+  React.useEffect(()=>{
+    if(success){
+      props.navigation.navigate("My Books");
+    }
+  },[success])
+
+  const handleDelete = async(bookId:any) => {
+    try {
+      const res = await deleteBook(bookId);
+      console.log(res)
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // const handleBorrowBook = async(bookId:any)=>{
+  //   const res = await createTransaction({
+  //     user: profile.data._id,
+  //     books: bookId,
+  //     paymentInfo: {},
+  //     itemPrice: book?.price,
+
+  //   })
+  // }
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: '#fff', padding: 20}}>
       <Header
@@ -168,11 +192,11 @@ const BookDetail = (props: Props) => {
               <View style={{justifyContent: 'center', alignItems: 'center'}}>
               <Button
                 style={styles.btn}
-                onPress={() => handleDelete()} 
+                onPress={() => handleDelete(book?._id)} 
                 icon='delete'
                 textColor='#fff'
-                loading={isLoading}>
-                {isLoading ? (
+                loading={loading}>
+                {loading ? (
                   <>
                     <Text style={{color: '#fff'}}>Loading...</Text>
                   </>
@@ -187,7 +211,12 @@ const BookDetail = (props: Props) => {
               <View style={{justifyContent: 'center', alignItems: 'center'}}>
                 <Button
                   style={styles.btn}
-                  onPress={() => handleSubmit()}
+                  onPress={() => props.navigation.navigate('Checkout',{
+                    id: book._id
+                  })}
+                  // onPress={()=>{
+                  //   handleBorrowBook(book._id)
+                  // }}
                   loading={isLoading} textColor='#fff'>
                   {isLoading ? (
                     <>

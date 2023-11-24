@@ -34,8 +34,8 @@ const Home = (props: Props) => {
   }, [isSuccess]);
 
   return (
-    <ListViewScreen title={`Hello, ${profile.data.name}`} isLoading={isLoading} isSuccess={isSuccess}  books={books} navigation={props.navigation} icon={  <ImageBackground
-      source={profile.data.avatar.url ? {uri: profile.data.avatar.url} : require('../assets/avatar.png')}
+    <ListViewScreen title={`Hello, ${profile?.data?.name}`} isLoading={isLoading} isSuccess={isSuccess}  books={books} navigation={props.navigation} icon={  <ImageBackground
+      source={profile?.data?.avatar?.url ? {uri: profile?.data?.avatar.url} : require('../assets/avatar.png')}
       style={{width: 35, height: 35}}
       imageStyle={{borderRadius: 25}}
     />} navigate="Profile"/>
