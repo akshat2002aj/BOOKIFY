@@ -2,23 +2,31 @@ import { apiSlice } from './ApiSlice';
 
 export const transactionApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getOnefgggfTransaction: builder.query({
-      query: (id) => ({
-        url: `/api/v1/transaction/${id}`,
-        method: 'GET',
-      }),
-      keepUnusedDataFor: 5,
-      providesTags: ['Order'],
-    }),
-    
     getOneOrder: builder.query({
       query: (id)=>({
         url: `/api/v1/transaction/${id}`,
         method: 'GET',
       }),
       keepUnusedDataFor: 5,
+      providesTags: ['Payment']
     }),
 
+    getMyOrder: builder.query({
+      query: ()=>({
+        url: `/api/v1/transaction/allOrder`,
+        method: 'GET'
+      }),
+      keepUnusedDataFor: 5,
+      providesTags: ['Order']
+    }),
+    getLandedOrder: builder.query({
+      query: ()=>({
+        url: `/api/v1/book/landed`,
+        method: 'GET'
+      }),
+      keepUnusedDataFor: 5,
+      providesTags: ['Landed']
+    }),
     createOrder: builder.mutation({
       query: (data) => ({
         url: `/api/v1/transaction/payment/process`,
@@ -44,11 +52,41 @@ export const transactionApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ['Order']
     }),
+    verifyDeliveryOtp: builder.mutation({
+      query: data => ({
+        url: `/api/v1/book/deliver/${data.id}`,
+        method: 'POST',
+        body: data.data,
+        credentials: 'include',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+      }),
+      invalidatesTags: ['Payment'],
+    }),
+    verifyReturnOtp: builder.mutation({
+      query: data => ({
+        url: `/api/v1/book/return/${data.id}`,
+        method: 'POST',
+        body: data.data,
+        credentials: 'include',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+      }),
+      invalidatesTags: ['Payment'],
+    })
   }),
 });
 
 export const {
   useCreateOrderMutation,
   useCreateTransactionMutation,
-  useGetOneOrderQuery
+  useGetOneOrderQuery,
+  useGetMyOrderQuery,
+  useGetLandedOrderQuery,
+  useVerifyDeliveryOtpMutation,
+  useVerifyReturnOtpMutation
 } = transactionApiSlice;

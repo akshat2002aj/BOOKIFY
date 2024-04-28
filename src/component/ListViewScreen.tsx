@@ -58,7 +58,7 @@ import {
                 style={{marginTop: 30}}
               />
             ) : (
-              <List navigation={props.navigation} books={bookData} />
+              <List navigation={props.navigation} books={bookData} key={1}/>
             )}
           </View>
         </ScrollView>

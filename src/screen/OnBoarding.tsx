@@ -25,7 +25,9 @@ const OnBoarding = (props: Props) => {
     isLoading,
     refetch,
   } = useProfileQuery(aksht);
+  
   const isLogedin = useSelector((state: any) => state.Auth.isLoggedIn);
+  
   useEffect(()=>{
     console.log(profile, isLoading)
     console.log(isLogedin);

@@ -4,6 +4,6 @@ const baseQuery = fetchBaseQuery({ baseUrl: 'https://book-e.onrender.com', crede
 // https://book-e.onrender.com
 export const apiSlice = createApi({
   baseQuery,
-  tagTypes: ['Book', 'Order', 'User', 'Payment'],
+  tagTypes: ['Book', 'Order', 'User', 'Payment', 'Landed'],
   endpoints: (builder) => ({}),
 });

@@ -118,7 +118,7 @@ const BookDetail = (props: Props) => {
             <View style={styles.userInfoSection}>
               <View style={{alignSelf: 'center', marginBottom: 35}}>
                 <ImageBackground
-                  source={{uri: book?.image?.url}}
+                  source={{uri: book?.image?.url ? book?.image?.url : "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.angelbookhouse.com%2Fproduct%2Ffocus-on-grammar-cocmposition-series&psig=AOvVaw1BjZF5pX08P-jISVbA_L9k&ust=1714363076037000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCPDx66KC5IUDFQAAAAAdAAAAABAE"}}
                   style={{
                     width: 200,
                     height: 200,
@@ -214,6 +214,7 @@ const BookDetail = (props: Props) => {
                   onPress={() => props.navigation.navigate('Checkout',{
                     id: book._id
                   })}
+                  disabled = {!book?.availability}
                   // onPress={()=>{
                   //   handleBorrowBook(book._id)
                   // }}

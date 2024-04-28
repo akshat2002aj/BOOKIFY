@@ -18,6 +18,7 @@ import EditProfile from '../screen/EditProfile';
 import AddBook from '../screen/AddBook';
 import Checkout from '../screen/Checkout';
 import Summary from '../screen/Summary';
+import Landed from '../screen/Landed';
 
 const Stack = createNativeStackNavigator<any>();
 
@@ -64,8 +65,17 @@ const AppStack = () => {
         }}
       />
       <Drawer.Screen
-        name="Payments"
+        name="My Orders"
         component={Payments}
+        options={{
+          drawerIcon: ({color}) => (
+            <MaterialIcons name="credit-card" size={22} color={color} />
+          ),
+        }}
+      />
+        <Drawer.Screen
+        name="Orders Received"
+        component={Landed}
         options={{
           drawerIcon: ({color}) => (
             <MaterialIcons name="credit-card" size={22} color={color} />
@@ -124,7 +134,7 @@ const HomeStack = () => {
         name="Summary"
         component={Summary}
         options={({route}) => ({
-          id: route.params?.id
+          id: route.params?.id,
         })}
       />
     </Stack.Navigator>

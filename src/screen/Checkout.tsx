@@ -112,6 +112,7 @@ const Checkout = (props: Props) => {
     console.log(data?.data?.price * 100);
     const res = await createOrder({
       amount: data?.data?.price * 100,
+      id: bookId
     });
     console.log(res);
   };

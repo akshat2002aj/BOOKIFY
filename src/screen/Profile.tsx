@@ -99,7 +99,7 @@ const Profile = (props: Props) => {
                 borderRightWidth: 1,
               },
             ]}>
-            <Title>0</Title>
+            <Title>{profile.data.booksOrdered}</Title>
             <Caption>Books Ordered</Caption>
           </View>
           <View style={styles.infoBox}>
@@ -118,10 +118,10 @@ const Profile = (props: Props) => {
               <Text style={styles.menuItemText}>My Books</Text>
             </View>
           </TouchableRipple>
-          <TouchableRipple onPress={() => {props.navigation.navigate("Payments")}}>
+          <TouchableRipple onPress={() => {props.navigation.navigate("Orders")}}>
             <View style={styles.menuItem}>
               <Icon name="credit-card" color="#AD40AF" size={25} />
-              <Text style={styles.menuItemText}>Payments</Text>
+              <Text style={styles.menuItemText}>My Orders</Text>
             </View>
           </TouchableRipple>
           <TouchableRipple onPress={() => {props.navigation.navigate("Support")}}>
