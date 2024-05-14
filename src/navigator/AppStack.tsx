@@ -19,6 +19,7 @@ import AddBook from '../screen/AddBook';
 import Checkout from '../screen/Checkout';
 import Summary from '../screen/Summary';
 import Landed from '../screen/Landed';
+import Chat from '../screen/Chat';
 
 const Stack = createNativeStackNavigator<any>();
 
@@ -135,6 +136,14 @@ const HomeStack = () => {
         component={Summary}
         options={({route}) => ({
           id: route.params?.id,
+        })}
+      />
+      <Stack.Screen
+        name="Chat"
+        component={Chat}
+        options={({route}) => ({
+          id: route.params?.id,
+          name: route.params?.name
         })}
       />
     </Stack.Navigator>

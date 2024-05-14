@@ -27,7 +27,7 @@ import {
           navigation={props.navigation}
           icon=""
           handleClick={() => () => props.navigation.navigate('')}
-          title={'My Orders'}
+          title={'Order Received'}
         />
         <ScrollView
           contentContainerStyle={{

@@ -31,7 +31,7 @@ const Header = (props: Props) => {
           style={{marginRight: 20}}
           onPress={() => props.navigation.openDrawer()}
         />
-        {props.title.length > 0 && (
+        {props.title?.length > 0 && (
           <Text style={{fontSize: 20, color: '#000', fontWeight: '600'}}>
             {props.title}
           </Text>

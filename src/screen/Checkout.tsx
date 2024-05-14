@@ -74,7 +74,7 @@ const Checkout = (props: Props) => {
       image: '../assets/item.jpg',
       currency: 'INR',
       key: 'rzp_test_svMY6lEjhW6IIV',
-      amount: data?.data?.price,
+      amount: data?.data?.price * 100,
       name: 'BOOKIFY',
       theme: {color: '#AD40AF'},
     };

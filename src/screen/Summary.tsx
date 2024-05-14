@@ -6,7 +6,7 @@ import {
   Image,
   ImageBackground,
 } from 'react-native';
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Button} from 'react-native-paper';
 
 import Header from '../component/Header';
@@ -33,6 +33,7 @@ import {
   useVerifyReturnOtpMutation
 } from '../features/TransactionApiSlice';
 import { useProfileQuery } from '../features/AuthApiSlice';
+import { useCreateChatMutation } from '../features/ChatSlice';
 
 type Props = {
   navigation: any;
@@ -44,6 +45,7 @@ const Summary = (props: Props) => {
   const [owner, setOwner] = React.useState(false);
   const [visible, setVisible] = React.useState(false);
   const [data, setData] = React.useState({});
+  const [chatData, setChatData] = React.useState();
 
   const dispatch = useDispatch();
   const [
@@ -55,6 +57,11 @@ const Summary = (props: Props) => {
     verifyReturnOtp,
     {isError:error, isLoading: returnLoading, isSuccess: returnSuccess},
   ] = useVerifyReturnOtpMutation();
+
+  const [
+    createChat,
+    {isError:chatError, isLoading: chatLoading, isSuccess: chatSuccess},
+  ] = useCreateChatMutation();
 
   let arg = 1;
   const {data: profile} = useProfileQuery(arg);
@@ -130,6 +137,26 @@ const Summary = (props: Props) => {
     handleSubmit(data);
   };
 
+  useEffect(()=>{
+    if(chatSuccess && chatData){
+      //console.log(chatData)
+      props.navigation.navigate('Chat',{
+        id: chatData?._id,
+        name: chatData?.chatName
+      })
+      //console.log(chatData)
+    }
+  },[chatSuccess, chatData])
+
+  const handleChat = async()=>{
+    const chat = await createChat({
+      order: summary.data._id
+    });
+    console.log(chat)
+    setChatData(chat?.data?.data)
+    //props.navigation.navigate('Chat')
+  }
+
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: '#fff', padding: 20}}>
       <Header
@@ -137,7 +164,7 @@ const Summary = (props: Props) => {
         handleClick={() => {
           props.navigation.navigate('Orders');
         }}
-        title=""
+        title="Summary"
         icon={
           <Feather name="x" color="#000" size={27} style={{marginRight: 5}} />
         }
@@ -266,7 +293,25 @@ const Summary = (props: Props) => {
               </View>
             </View>
             
-            
+            <View style={{justifyContent: 'center', alignItems: 'center'}}>
+              <Button
+                style={styles.btn}
+                onPress={handleChat} 
+                icon='chat'
+                textColor='#fff'
+                loading={chatLoading}>
+                {chatLoading ? (
+                  <>
+                    <Text style={{color: '#fff'}}>Loading...</Text>
+                  </>
+                ) : (
+                  <Text style={{color: '#fff', fontSize: 16}}>
+                    Chat Now
+                  </Text>
+                )}
+              </Button>
+            </View>
+
             {owner && !summary?.data?.isDelivered ? (
               <Button
                 style={styles.btn}
