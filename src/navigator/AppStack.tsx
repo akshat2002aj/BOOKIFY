@@ -84,15 +84,6 @@ const AppStack = () => {
         }}
       />
       <Drawer.Screen
-        name="Support"
-        component={Support}
-        options={{
-          drawerIcon: ({color}) => (
-            <MaterialIcons name="message" size={22} color={color} />
-          ),
-        }}
-      />
-      <Drawer.Screen
         name="Settings"
         component={Settings}
         options={{
